@@ -1,3 +1,7 @@
+export interface SpeedTestEvent {
+  type: string;
+}
+
 export interface SpeedTestResult {
   timestamp: string;
   ping: {
