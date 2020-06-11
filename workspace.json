@@ -1,0 +1,125 @@
+{
+  "version": 1,
+  "projects": {
+    "speedtest-exporter": {
+      "root": "apps/speedtest-exporter",
+      "sourceRoot": "apps/speedtest-exporter/src",
+      "projectType": "application",
+      "prefix": "speedtest-exporter",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/speedtest-exporter",
+            "main": "apps/speedtest-exporter/src/main.ts",
+            "tsConfig": "apps/speedtest-exporter/tsconfig.app.json",
+            "assets": ["apps/speedtest-exporter/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/speedtest-exporter/src/environments/environment.ts",
+                  "with": "apps/speedtest-exporter/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "speedtest-exporter:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "apps/speedtest-exporter/.eslintrc",
+            "tsConfig": [
+              "apps/speedtest-exporter/tsconfig.app.json",
+              "apps/speedtest-exporter/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/speedtest-exporter/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/speedtest-exporter/jest.config.js",
+            "tsConfig": "apps/speedtest-exporter/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/express"
+  },
+  "schematics": {
+    "@nrwl/workspace": {
+      "library": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/cypress": {
+      "cypress-project": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/react": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/next": {
+      "application": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/web": {
+      "application": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/node": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/nx-plugin": {
+      "plugin": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/nest": {
+      "application": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/express": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      }
+    }
+  },
+  "defaultProject": "speedtest-exporter"
+}
