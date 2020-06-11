@@ -27,8 +27,6 @@ export async function speedTestRequestHandler(request: Request, response: Respon
 
     console.log('speed test completed');
 
-    console.log(test);
-
     response
       .contentType('text/plain')
       .send(
