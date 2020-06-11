@@ -1,9 +1,14 @@
-FROM node:latest
+FROM node:latest as builder
 WORKDIR /source
 COPY package.json .
 COPY yarn.lock .
 RUN yarn
 COPY . .
 RUN yarn nx build --prod
+
+FROM node:latest
+WORKDIR /app
+RUN yarn add express speedtest-net tslib
+COPY --from=builder /source/dist/apps/speedtest-exporter/ .
 EXPOSE 9112
-CMD [ "node", "dist/apps/speedtest-exporter/main.js" ]
+CMD [ "node", "main.js" ]
