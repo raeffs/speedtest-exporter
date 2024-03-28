@@ -28,7 +28,7 @@
   },
   "private": true,
   "dependencies": {
-    "express": "4.17.3",
+    "express": "4.19.2",
     "rxjs": "^6.5.5",
     "speedtest-net": "^2.1.1",
     "tslib": "^2.0.0"
